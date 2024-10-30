@@ -1,0 +1,12 @@
+<?php
+use HoffIT\WP_HashViewer\Instagram_Hash_Viewer;
+
+class HashViewerTest extends PHPUnit_Framework_TestCase
+{
+    public function testFilterHashtags()
+    {
+        $instance = new Instagram_Hash_Viewer();
+        $this->assertEquals('["mittsteinkjer"]', $instance->filterHashtags("#mittsteinkjer"))
+    }
+}
+?>

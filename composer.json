@@ -1,0 +1,17 @@
+{
+	"name": "wp-instagram-competition",
+	"description": "An easy-to-use system for managing Instagram competitions within Wordpress",
+	"authors": [
+		{
+			"name": "Christian Metz",
+			"email": "christian-metz1@gmx.net",
+			"homepage": "http://metzweb.net"
+		}
+	],
+	"require": {
+		"php": ">=5.2.0",
+		"twig/twig": "1.*",
+		"nategood/httpful": "*",
+		"ext-curl": "*"
+	}
+}

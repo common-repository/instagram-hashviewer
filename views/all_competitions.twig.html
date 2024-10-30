@@ -1,0 +1,68 @@
+<h2>HashViewer - Competitions</h2>
+
+<div class="container col-sm-12">
+	<h3>Competitions</h3>
+	<table class="competition-table wp-list-table widefat fixed">
+		<thead>
+		<tr>
+			<th class="manage small-field">Active</th>
+			<th class="manage">Title</th>
+			<th class="manage">Hashtag</th>
+			<th class="manage">Browse</th>
+			<th class="manage">Start time</th>
+			<th class="manage">End time</th>
+			<th class="manage">Winner</th>
+			<th class="manage">Delete</th>
+		</tr>
+		</thead>
+		<tfoot>
+			<tr>
+			<th class="manage small-field">Active</th>
+			<th class="manage">Title</th>
+			<th class="manage">Hashtag</th>
+			<th class="manage">Browse</th>
+			<th class="manage">Start time</th>
+			<th class="manage">End time</th>
+			<th class="manage">Winner</th>
+			<th class="manage">Delete</th>
+		</tr>
+		</tfoot>
+
+		<tbody>
+		{% for comp in competitions %}
+		<tr>
+			<td class="small-field">
+				<span class="glyphicon glyphicon-{{ (comp.active == 1) ? 'ok' : 'remove'}}"></span>
+			</td>
+			<td>{{ comp.title }}</td>
+			<td>
+				{% for tag in comp.hashtags|split(',') %}
+					<div class="tag">#{{ tag }}</div>
+				{% endfor %}
+			</td>
+			<td>
+				<a href="{{ browse_url }}&compId={{ comp.id }}" title="Browse">
+					<span class="glyphicon glyphicon-th-large"></span>
+				</a>
+			</td>
+
+			<td>{{ comp.startTime|date("d. M, Y H:i") }}</td>
+			<td>{{ comp.endTime|date("d. M, Y H:i") }}</td>
+			
+			<td>{{ comp.winnerSubmissionId ? comp.winnerSubmissionId : 'Not decided' }}</td>
+			<td>
+				<form action="{{ request_url }}" method="post">
+					<input type='hidden' name='action' value='delete-competition' />
+					<input type='hidden' name='compId' value="{{comp.id}}">
+					<button type="submit" class="glyphicon glyphicon-trash"></button>
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+
+	</table>
+
+	<a href="{{ new_comp_url }}"><button class="btn btn-primary">New competition</button>
+
+</div>
